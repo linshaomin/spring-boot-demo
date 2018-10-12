@@ -2,9 +2,11 @@ package com.example.demo.mybatis.mapper;
 
 import com.example.demo.mybatis.model.User;
 import org.apache.ibatis.annotations.*;
+import org.springframework.stereotype.Repository;
 
 @Mapper
-public interface UserMapper {
+@Repository
+public interface TestUserMapper {
 
     @Select("select * from t_user where phone = #{phone}")
     User findUserByPhone(@Param("phone") String phone);

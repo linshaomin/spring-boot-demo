@@ -1,7 +1,7 @@
 package com.example.demo.mybatis;
 
 
-import com.example.demo.mybatis.mapper.UserMapper;
+import com.example.demo.mybatis.mapper.TestUserMapper;
 import com.example.demo.mybatis.model.User;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -19,12 +19,12 @@ import org.springframework.test.context.junit4.SpringRunner;
 public class UserTest {
 
     @Autowired
-    private UserMapper userMapper;
+    private TestUserMapper testUserMapper;
 
     @Test
 //    @Transactional
     public void test(){
         User u = new User(null,"张三", "123456", "18600000000");
-        System.out.println(userMapper.insertByUser(u));
+        System.out.println(testUserMapper.insertByUser(u));
     }
 }
