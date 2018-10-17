@@ -1,9 +1,13 @@
 package com.example.demo.aop.aspect;
 
+import com.example.demo.exception.domain.Result;
+import com.example.demo.exception.handler.ExceptionHandle;
 import org.aspectj.lang.JoinPoint;
+import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
@@ -21,6 +25,9 @@ public class HttpAspect {
 
     //使用org.slf4j.Logger,这是Spring实现日志的方法
     private final static Logger logger = LoggerFactory.getLogger(HttpAspect.class);
+
+    @Autowired
+    private ExceptionHandle exceptionHandle;
 
     /**
      * 定义AOP扫描路径
@@ -47,6 +54,24 @@ public class HttpAspect {
         logger.info("class={} and method name = {}",joinPoint.getSignature().getDeclaringTypeName(),joinPoint.getSignature().getName());
         //参数
         logger.info("参数={}",joinPoint.getArgs());
+    }
+
+    /**
+     * HTTP请求异常处理
+     */
+    @Around("log()")
+    public Object doAround(ProceedingJoinPoint proceedingJoinPoint) throws Throwable {
+        Result result = null;
+        try {
+
+        } catch (Exception e) {
+            return exceptionHandle.exceptionGet(e);
+        }
+        if(result == null){
+            return proceedingJoinPoint.proceed();
+        }else {
+            return result;
+        }
     }
 
     /**
