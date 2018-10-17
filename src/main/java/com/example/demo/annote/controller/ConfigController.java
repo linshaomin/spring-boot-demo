@@ -1,6 +1,6 @@
-package com.example.demo.controller;
+package com.example.demo.annote.controller;
 
-import com.example.demo.config.ConfigBean;
+import com.example.demo.annote.config.ConfigBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.GetMapping;
