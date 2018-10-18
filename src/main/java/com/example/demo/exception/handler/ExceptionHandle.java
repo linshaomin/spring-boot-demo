@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
  * @author shaomin.lin
- * @Description:
+ * @Description:异常处理器
  * @date 2018/10/17 17:27
  */
 @ControllerAdvice
@@ -21,6 +21,7 @@ public class ExceptionHandle {
     private final static Logger LOGGER = LoggerFactory.getLogger(ExceptionHandle.class);
 
     /**
+     * 全局异常捕捉处理
      * 判断错误是否是已定义的已知错误，不是则由未知错误代替，同时记录在log中
      * @param e
      * @return

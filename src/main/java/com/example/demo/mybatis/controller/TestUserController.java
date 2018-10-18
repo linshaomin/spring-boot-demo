@@ -1,5 +1,7 @@
 package com.example.demo.mybatis.controller;
 
+import com.example.demo.exception.domain.DescribeException;
+import com.example.demo.exception.domain.ExceptionEnum;
 import com.example.demo.mybatis.model.User;
 import com.example.demo.mybatis.service.TestUserService;
 import io.swagger.annotations.Api;
@@ -27,6 +29,10 @@ public class TestUserController {
     @ApiOperation(value="根据手机查询用户信息")
     @GetMapping
     public User findUserByPhone(@ApiParam(value = "手机号", required = true) @RequestParam(value = "phone") String phone) {
-        return testUserService.findUserByPhone(phone);
+        User user = testUserService.findUserByPhone(phone);
+        if(user == null) {
+            throw new DescribeException(ExceptionEnum.USER_NOT_FIND);
+        }
+        return user;
     }
 }
