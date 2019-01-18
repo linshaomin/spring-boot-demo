@@ -1,5 +1,7 @@
 package com.example.demo.redis;
 
+import com.alibaba.fastjson.parser.ParserConfig;
+import com.example.demo.mybatis.model.User;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,12 +23,25 @@ public class TestRedis {
     private StringRedisTemplate stringRedisTemplate;
 
     @Test
-    public void set(){
+    public void setString(){
         stringRedisTemplate.opsForValue().set("test2","testValue1");
     }
 
     @Test
-    public void get(){
+    public void setUser(){
+        User user = new User(123,"kkk","1234","666");
+        redisTemplate.opsForValue().set("user",user);
+    }
+
+    @Test
+    public void getString(){
         System.out.println(stringRedisTemplate.opsForValue().get("mystring"));
+    }
+
+    @Test
+    public void getUser(){
+        ParserConfig.getGlobalInstance().setAutoTypeSupport(true);
+        User user = (User)redisTemplate.opsForValue().get("user");
+        System.out.println(user);
     }
 }

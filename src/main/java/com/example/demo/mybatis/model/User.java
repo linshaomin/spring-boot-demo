@@ -2,6 +2,8 @@ package com.example.demo.mybatis.model;
 
 import lombok.*;
 
+import java.io.Serializable;
+
 /**
  * @author shaomin.lin
  * @Description:
@@ -12,7 +14,7 @@ import lombok.*;
 @ToString
 @AllArgsConstructor
 @NoArgsConstructor
-public class User {
+public class User implements Serializable {
 
     private Integer id;
 
