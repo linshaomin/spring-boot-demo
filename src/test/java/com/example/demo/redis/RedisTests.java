@@ -14,7 +14,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 @SpringBootTest
 @RunWith(SpringRunner.class)
 @Component
-public class TestRedis {
+public class RedisTests {
 
     @Autowired
     private RedisTemplate redisTemplate;
